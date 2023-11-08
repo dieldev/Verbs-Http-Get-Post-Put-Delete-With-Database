@@ -10,6 +10,9 @@ public class DozerMapper {
 
     private static Mapper mapper = DozerBeanMapperBuilder.buildDefault();
 
+    // Nova alternativa, pois o DozerMapper será descontinuiado futuramente.
+    // private static ModelMapper mapper = new ModelMapper();
+
     public static <O, D> D parseObject(O origin, Class<D> destination) {
         return mapper.map(origin, destination);
     }
@@ -21,5 +24,4 @@ public class DozerMapper {
         }
         return destinationObjects;
     }
-    
 }
