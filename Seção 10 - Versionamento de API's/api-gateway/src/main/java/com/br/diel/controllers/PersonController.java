@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.diel.data.vo.v1.PersonVO;
+import com.br.diel.data.vo.v2.PersonVOV2;
 import com.br.diel.services.PersonServices;
 
 @RestController
@@ -33,10 +34,15 @@ public class PersonController {
         public PersonVO findById(@PathVariable(value = "id") Long id) {
             return service.findById(id);
     }
-
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    
+    @PostMapping(value = "/v1", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
         public PersonVO create(@RequestBody PersonVO person) {
             return service.create(person);
+    }
+
+    @PostMapping(value = "/v2", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+        public PersonVOV2 createV2(@RequestBody PersonVOV2 person) {
+            return service.createV2(person);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
